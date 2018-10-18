@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form class="form-horizontal" th:action="@{/admin/register}" th:method="POST" th:object="${user}">
+
+        <fieldset>
+
+            <div class="control-group">
+                <!-- Name -->
+                <label class="control-label" for="name">name</label>
+                <div class="controls">
+                    <input type="text" id="name" name="name" value="" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Login -->
+                <label class="control-label"  for="login">login</label>
+                <div class="controls">
+                    <input type="text" id="login" name="login" value="" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Password-->
+                <label class="control-label" for="password">password</label>
+                <div class="controls">
+                    <input type="password" id="password" name="password" value="" placeholder="" class="input-xlarge">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <!-- Role  -->
+
+                <!--<label class="control-label" for="role">role</label>-->
+                <div th:each="role : ${allRoles}" class="controls">
+
+                        <input type="checkbox" name="selectedRoles"
+                               th:value="${role.id}">
+                        <label th:text="${role.name}"></label>
+
+                </div>
+
+            </div>
+
+            <div class="control-group">
+                <!-- Button -->
+                <div class="controls">
+                    <button type="submit" class="btn btn-success">
+                        add User
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

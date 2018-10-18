@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Sorry, you do not have permission to view this page.</h2>
+
+
+    <div class="controls">
+        <p>
+            Click <a th:href="@{/logout}">Logout</a>
+            to authentication for nesessary authorities.
+        </p>
+    </div>
+</body>
+</html>

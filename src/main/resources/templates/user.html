@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User menu</title>
+</head>
+<body>
+
+<div>
+        <span th:if="${Annotation != null}"
+              th:style="${isError} ? 'color:red' : 'color:green'" th:utext="${Annotation}">
+        </span>
+</div>
+
+<p>
+    <div th:if="${#authentication.isAuthenticated()}">
+        Welcome, <span sec:authentication="name"></span>
+    </div>
+</p>
+
+<div class="controls">
+    <p>
+        <a th:href="@{/logout}">Logout</a>
+    </p>
+</div>
+
+<div class="controls">
+    <form action='/admin/register'>
+        <button type="submit">Add</button>
+    </form>
+</div>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-10">
+            <br><br>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thread>
+                        <tr class="active">
+                            <th>id</th>
+                            <th>name</th>
+                            <th>login</th>
+                            <th>password</th>
+                            <th>role</th>
+                            <th>control</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.id}">id</td>
+                            <td th:text="${user.name}">name</td>
+                            <td th:text="${user.login}">${user.login}</td>
+                            <td th:text="${user.password}">password</td>
+                            <td>
+                                <div  th:each="role : ${user.roles}">
+                                    <span th:text="${role.name}"></span>
+                                    <br>
+                                </div>
+                            </td>
+                            <td align="center">
+                                <div class="btn-group">
+                                    <a th:href="@{/admin/edit(id=${user.id})}"><button type="button" class="btn btn-primary">Edit</button></a>
+                                    <a th:href="@{/admin/delete(id=${user.id})}"><button type="button" class="btn btn-primary">Delete</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <form action='/any'>
+        <button type="submit">Any</button>
+    </form>
+</div>
+
+</body>
+</html>
